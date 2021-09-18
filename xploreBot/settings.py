@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
 from pathlib import Path
+import dj_database_url
+#import xploreBot.storages_backends
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +27,11 @@ SECRET_KEY = 'django-insecure-#p6ixk9b&^+n7z65dovch1844=l)c3dgx90(d@$h&@hg33!_e7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+        '*',
+        'https://xplorebot.herokuapp.com',
+
+        ]
 
 
 # Application definition
@@ -77,16 +83,24 @@ WSGI_APPLICATION = 'xploreBot.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME':'xploreBot',
+#         'USER':'root',
+#         'PASSWORD':'Isandev2020.c0m',
+#         'HOST':'127.0.0.1',
+#         'PORT':'3306'
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME':'xploreBot',
-        'USER':'root',
-        'PASSWORD':'Isandev2020.c0m',
-        'HOST':'127.0.0.1',
-        'PORT':'3306'
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        'NAME': 'xploreBot',
     }
 }
+DATABASES['default'] =  dj_database_url.config()
 
 
 # Password validation
